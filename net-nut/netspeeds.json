@@ -2,35 +2,35 @@
 	"netflix": [
 		{
 			"date": "September 2013",
-			"speed": 2.11
+			"speed": 211
 		},
 		{
 			"date": "October 2013",
-			"speed": 2.07
+			"speed": 207
 		},
 		{
 			"date": "November 2013",
-			"speed": 1.82
+			"speed": 182
 		},
 		{
 			"date": "December 2013",
-			"speed": 1.63
+			"speed": 163
 		},
 		{
 			"date": "January 2014",
-			"speed": 1.51
+			"speed": 151
 		},
 		{
 			"date": "February 2014",
-			"speed": 1.68
+			"speed": 168
 		},
 		{
 			"date": "March 2014",
-			"speed": 2.50
+			"speed": 250
 		},
 		{
 			"date": "April 2014",
-			"speed": 2.77
+			"speed": 277
 		}
 	]
 }
