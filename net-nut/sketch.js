@@ -40,7 +40,7 @@ function setup() {
 	};
 };
 
-alert("For best results, please use Firefox");
+//alert("For best results, please use Firefox");
 
 function draw() {
 	createCanvas(windowWidth, windowHeight);
@@ -53,9 +53,10 @@ function draw() {
 	fill(70);
 	rect(0, 0, windowWidth, 200);
 
+	textAlign(CENTER);
 	fill(255);
 	textSize(100);
-	text("https://netneutrality", 300, 150);
+	text("https://netneutrality", windowWidth/2, 150);
 
 	val = radio.value();
 
@@ -74,6 +75,7 @@ function draw() {
 			sprite[i].floor = "down";
 		};
 		//text telling the month and speed
+		textAlign(LEFT);
 		textSize(60);
 		fill(204, 229, 255);
 		noStroke();
@@ -90,6 +92,7 @@ function draw() {
 		textSize(30);
 		fill(204, 229, 255);
 		noStroke();
+		textAlign(LEFT);
 		text("In October 2013, Netflix's speed on Comcast began slowing. Comcast was throttling its", 200, 300);
 		text("consumers' access to Netflix to coerce the company into a network deal. In February", 200, 330);
 		text("2014, Netflix agreed to the deal, and its speed on Comcast skyrocketed, even exceeding",200, 360);
@@ -102,7 +105,7 @@ function draw() {
 
 //throws the blocks, mainly just for fun
 function keyPressed() {
-	for (var i = 0; i < 277; i++) {
+	for (var i = 0; i < sprite.length; i++) {
 		sprite[i].tossed();
 	};
 };
@@ -114,9 +117,9 @@ function Sprite() {
 	this.gravity = random(0.65, 0.85);//Higher gravity = greater acceleration. Every block has a different
 	//gravity so that they don't fall in a line but they separate a bit
 	this.yToss = 20; //max height sprite can be thrown.
-	this.bounce = random(0.3, 0.5);//each block has a slightly different bounce factor
+	this.bounce = random(0.4, 0.6);//each block has a slightly different bounce factor
 	this.floor = "down";//"up" tells the blocks to fall up, vice versa with "down"
-	this.up = 0;//random(0, 50);
+	this.up = random(0, 158);
 	this.down = 63;//random(63, 95);//a variable to easily change the height of the ground
 
 	//draws the sprite
@@ -127,15 +130,15 @@ function Sprite() {
 			fill(150, 255, 0, 50);
 		};
 		// if (this.y === 0) {
-		// 	fill(150, 255, 0, 50);
+			// fill(150, 255, 0, 50);
 		// } else if (this.y === windowHeight - 63) {
-		// 	fill(255, 0, 150, 50);
+			// fill(255, 0, 150, 50);
 		// } else {
-		// 	noFill();
+			// noFill();
 		// };
 		stroke(255);
 		strokeWeight(5);
-		rect(this.x, this.y, 40, 40, 50);
+		rect(this.x, this.y, 30, 40, 0);
 	};
 
 	//invokes gravity. As long as the sprite is not on the "ground," it falls faster and faster.
