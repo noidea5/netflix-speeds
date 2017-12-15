@@ -1,3 +1,12 @@
+/*
+	"ISP Speed Index." Netflix, ispspeedindex.netflix.com/country/us/. Accessed 15
+    	Dec. 2017.
+
+    "Net Neutrality: What You Need to Know Now." Save the Internet, Free Press,
+    	2017, www.savetheinternet.com/net-neutrality-what-you-need-know-now.
+    	Accessed 15 Dec. 2017. 
+*/
+
 var radio;//used to make the radios
 var mbps;//used to load the JSON file
 var val;//for utilizing the radio value
