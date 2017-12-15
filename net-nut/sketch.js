@@ -29,8 +29,8 @@ function setup() {
 		sprite[i] = new Sprite();
 	};
 
-//	myLink = createA('https://ispspeedindex.netflix.com/country/us/', 'Netflix\'s data');
-//	myLink.position(50, 200);
+	myLink = createA('https://www.savetheinternet.com/net-neutrality-what-you-need-know-now', 'If you don\'t know what Net Neutrality is');
+	myLink.position(10, 560);
 };
 
 //alert("Works best in Firefox");
@@ -74,6 +74,12 @@ function draw() {
 		noStroke();
 		text(`Netflix's speed was ${mbps.netflix[val].speed/100} mbps`, 200, 400);
 		text(`in ${mbps.netflix[val].date}.`, 200, 460);
+
+		// if (val === 5) {
+		// 	fill(204, 229, 255);
+		// 	textSize(80);
+		// 	text("This month Netflix agreed to Comcast's deal", 200, 520);
+		// };
 
 		textSize(30);
 		text("Each block represents 10 kilobytes.", 200, 500);
