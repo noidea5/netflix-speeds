@@ -1,26 +1,16 @@
-var radio;
-var mbps;
-var val;
-var loadFirst = 0;
-var difference;
-var intro;
-var sprite = [];
+var radio;//used to make the radios
+var mbps;//used to load the JSON file
+var val;//for utilizing the radio value
+var sprite = [];//blocks
+var netflixLink;//used for a link to nextflix's data site
+var buttonEnd;
+var buttonBegin;
 
 function preload() {
 	mbps = loadJSON("netspeeds.json");
 };
 
 function setup() {
-	createCanvas(windowWidth, windowHeight);
-	background(100, 200, 255);
-
-	fill(70);
-	rect(0, 0, windowWidth, 200);
-
-	fill(255);
-	textSize(100);
-	text("https://netneutrality", 300, 150);
-
 	radio = createRadio();
 	radio.option("September 2013", 0);
 	radio.option("October 2013  ", 1);
@@ -38,9 +28,12 @@ function setup() {
 	for (var i = 0; i < 277; i++) {
 		sprite[i] = new Sprite();
 	};
+
+//	myLink = createA('https://ispspeedindex.netflix.com/country/us/', 'Netflix\'s data');
+//	myLink.position(50, 200);
 };
 
-//alert("For best results, please use Firefox");
+//alert("Works best in Firefox");
 
 function draw() {
 	createCanvas(windowWidth, windowHeight);
@@ -50,9 +43,9 @@ function draw() {
 	fill(204, 229, 255);
 	rect(0, windowHeight - 20, windowWidth, 23);//floor. Purely asthetic; the sprites don't collide directly.
 
+	//banner on top
 	fill(70);
 	rect(0, 0, windowWidth, 200);
-
 	textAlign(CENTER);
 	fill(255);
 	textSize(100);
@@ -79,15 +72,15 @@ function draw() {
 		textSize(60);
 		fill(204, 229, 255);
 		noStroke();
-		text(`Netflix's speed was ${mbps.netflix[val].speed/100} mbps`, 200, 300);
-		text(`in ${mbps.netflix[val].date}.`, 200, 360);
+		text(`Netflix's speed was ${mbps.netflix[val].speed/100} mbps`, 200, 400);
+		text(`in ${mbps.netflix[val].date}.`, 200, 460);
 
 		textSize(30);
-		text("Each block represents 10 kilobytes.", 200, 400);
+		text("Each block represents 10 kilobytes.", 200, 500);
 		text("Press any key to toss the blocks.", 200, windowHeight - 100);
 
 		fill(200);
-		text("^ Speed that month ^", 10, 100);
+		text("\u{2B07} Speed that month \u{2B07}", 10, 190);// '\u{2B07}' makes a down arrow with unicode
 	} else {//Introductory information for before a radio has been selected
 		textSize(30);
 		fill(204, 229, 255);
@@ -111,34 +104,33 @@ function keyPressed() {
 };
 
 function Sprite() {
-	this.x = random(0, windowWidth-40); //sprite's x position
+	this.x = random(0, windowWidth-38); //sprite's x position
 	this.y = random(5, 160); //y position
 	this.yVelocity = 0; //used for falling.
 	this.gravity = random(0.65, 0.85);//Higher gravity = greater acceleration. Every block has a different
 	//gravity so that they don't fall in a line but they separate a bit
+
 	this.yToss = 20; //max height sprite can be thrown.
-	this.bounce = random(0.4, 0.6);//each block has a slightly different bounce factor
+	this.bounce = random(0.3, 0.5);//each block has a slightly different bounce factor
 	this.floor = "down";//"up" tells the blocks to fall up, vice versa with "down"
-	this.up = random(0, 158);
-	this.down = 63;//random(63, 95);//a variable to easily change the height of the ground
+
+	//variables to easily change the height of the "ground"
+	this.up = random(224, 320);
+	this.down = 43;//random(63, 95);
 
 	//draws the sprite
 	this.display = function() {
-		if (this.floor === "down") {
-			fill(255, 0, 150, 50);
-		} else {
-			fill(150, 255, 0, 50);
-		};
-		// if (this.y === 0) {
-			// fill(150, 255, 0, 50);
-		// } else if (this.y === windowHeight - 63) {
-			// fill(255, 0, 150, 50);
-		// } else {
-			// noFill();
-		// };
 		stroke(255);
 		strokeWeight(5);
-		rect(this.x, this.y, 30, 40, 0);
+		//changes the color and direction of the triangles based on where they fall
+		if (this.floor === "down") {
+			fill(255, 0, 150, 50);
+			triangle(this.x-22, this.y-20, this.x, this.y+20, this.x+22, this.y-20);
+		} else {
+			fill(150, 255, 0, 50);
+			triangle(this.x-22, this.y+20, this.x, this.y-20, this.x+22, this.y+20);
+		};
+		//rect(this.x, this.y, 30, 40);
 	};
 
 	//invokes gravity. As long as the sprite is not on the "ground," it falls faster and faster.
